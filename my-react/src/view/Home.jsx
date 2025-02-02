@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 function Home() {
   const [komisi, setKomisi] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchKomisi = useCallback(async () => {
     try {
@@ -10,6 +11,8 @@ function Home() {
       setKomisi(data.data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -17,40 +20,42 @@ function Home() {
     fetchKomisi();
   }, [fetchKomisi]);
 
-  useEffect(() => {}, [komisi]);
-
   return (
-    <div className="overflow-x-auto justify-center mt-11 mx-6 text-white  my-4 bg-slate-900">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Marketing</th>
-            <th>Bulan</th>
-            <th>Omzet</th>
-            <th>Komisi %</th>
-            <th>Komisi Nominal</th>
-          </tr>
-        </thead>
-        <tbody>
-          {komisi.length > 0 ? (
-            komisi.map((el, index) => (
-              <tr className="bg-base-300" key={index}>
-                <td>{el?.marketing}</td>
-                <td>{el?.bulan}</td>
-                <td>{el?.Omzet}</td>
-                <td>{el?.komisiPersen}%</td>
-                <td>{el?.komisiNominal}</td>
-              </tr>
-            ))
-          ) : (
+    <div className="overflow-x-auto justify-center mt-11 mx-6 text-white my-4 bg-slate-900">
+      {loading ? (
+        <div className="text-center">Loading...</div>
+      ) : (
+        <table className="table">
+          <thead>
             <tr>
-              <td colSpan="5" className="text-center">
-                No data available
-              </td>
+              <th>Marketing</th>
+              <th>Bulan</th>
+              <th>Omzet</th>
+              <th>Komisi %</th>
+              <th>Komisi Nominal</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {komisi.length > 0 ? (
+              komisi.map((el, index) => (
+                <tr className="bg-base-300" key={index}>
+                  <td>{el?.marketing}</td>
+                  <td>{el?.bulan}</td>
+                  <td>{el?.Omzet}</td>
+                  <td>{el?.komisiPersen}%</td>
+                  <td>{el?.komisiNominal}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center">
+                  No data available
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
