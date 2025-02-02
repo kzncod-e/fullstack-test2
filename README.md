@@ -50,7 +50,7 @@
 {
   "penjualan_Id": 1,
   "jumlah_pembayaran": 3000000,
-  "metode_pembayaran": "Transfer Bank"
+  "metode_pembayaran": "kredit"
 }
 ```
 
@@ -63,7 +63,7 @@
     "id": 1,
     "penjualan_Id": 1,
     "jumlah_pembayaran": "3000000",
-    "metode_pembayaran": "Transfer Bank"
+    "metode_pembayaran": "kredit"
   }
 }
 ```
@@ -84,7 +84,7 @@
       "id": 1,
       "penjualan_Id": 1,
       "jumlah_pembayaran": "3000000",
-      "metode_pembayaran": "Transfer Bank"
+      "metode_pembayaran": "kredit"
     }
   ]
 }
