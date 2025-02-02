@@ -18,7 +18,7 @@
    ```sh
    cd ../server
    ```
-5. **Konfigurasi database di file `.env`**.
+5. **Konfigurasi database di file `.env`** (lihat contoh di bawah).
 6. **Install dependencies:**
    ```sh
    npm i
@@ -35,6 +35,21 @@
    ```sh
    npm run dev
    ```
+
+---
+
+## 📌 **Contoh Konfigurasi `.env`**
+
+Buat file `.env` di dalam folder `server` dan tambahkan konfigurasi berikut:
+
+```ini
+# Database Configuration
+DATABASE_URL="postgresql://username:password@localhost:5432/nama_database"
+
+# Server Configuration
+PORT=8000
+
+```
 
 ---
 
@@ -142,4 +157,4 @@
 
 ### 💡 **Catatan:**
 
-Sesuaikan konfigurasi database di file `.env` sebelum menjalankan proyek.
+Pastikan `.env` sudah dikonfigurasi dengan benar sebelum menjalankan proyek.
