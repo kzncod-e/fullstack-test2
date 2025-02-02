@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "2987b892-d175-4448-a739-cb2e813090fa",
+		"name": "clinic-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30799035"
+	},
+	"item": [
+		{
+			"name": "penjualan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/penjualan",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"penjualan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pembayaran",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"penjualan_Id\": 1,\r\n  \"jumlah_pembayaran\": 500000,\r\n  \"metode_pembayaran\": \"Kredit\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/pembayaran",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pembayaran"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pembayaran",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/pembayaran",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pembayaran"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "komisi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
