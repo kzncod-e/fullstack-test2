@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Marketing {
+  id        Int          @id @default(autoincrement())
+  name      String
+  Penjualan Penjualan[]  @relation("MarketingToPenjualan")
+}
+
+model Penjualan {
+  id                 Int       @id @default(autoincrement())
+  transaction_number String    @unique
+  marketing_Id       Int
+  date              DateTime  @default(now())
+  cargo_fee         Int?     
+  total_balance     Int
+  grand_total       Int
+
+  marketing         Marketing @relation(fields: [marketing_Id], references: [id], name: "MarketingToPenjualan")
+    Pembayaran      Pembayaran[] 
+}
+
+
+model Pembayaran {
+  id                 Int       @id @default(autoincrement())
+  penjualan_Id       Int
+  jumlah_pembayaran  BigInt
+  metode_pembayaran  String    @db.VarChar(50)
+  tanggal_pembayaran DateTime  @default(now())
+
+
+  penjualan Penjualan @relation(fields: [penjualan_Id], references: [id], onDelete: Cascade)
+}
