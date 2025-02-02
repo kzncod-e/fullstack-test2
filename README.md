@@ -1,88 +1,145 @@
-# 📌 Sistem Pembayaran dengan Prisma dan Express
+# 📄 **API Documentation**
 
-## 📖 Deskripsi
-Proyek ini adalah sistem pembayaran berbasis Node.js menggunakan Express dan Prisma sebagai ORM untuk berinteraksi dengan database. Sistem ini memungkinkan pengguna untuk membuat dan mengambil data transaksi pembayaran.
+## ⚙️ **Instalasi & Menjalankan Proyek**
 
-## ⚡ Fitur
-- **Membuat Pembayaran**: Menyimpan data transaksi pembayaran berdasarkan ID penjualan.
-- **Mendapatkan Semua Pembayaran**: Mengambil semua transaksi pembayaran yang telah dilakukan.
-- **Validasi ID Penjualan**: Memastikan bahwa ID penjualan yang diberikan valid sebelum membuat pembayaran.
-- **Cegah Duplikasi**: Tidak mengizinkan pembayaran ganda untuk transaksi yang sudah selesai.
-
-## 🛠️ Instalasi
-1. **Kloning repositori**
+1. **Masuk ke folder `my-react`:**
    ```sh
-   git clone https://github.com/username/repository.git
-   cd repository
+   cd my-react
    ```
-2. **Install dependencies**
+2. **Install dependencies:**
    ```sh
-   bun install
+   npm i
    ```
-3. **Konfigurasi Database**
-   - Ubah file `.env` dengan konfigurasi database yang sesuai:
-     ```env
-     DATABASE_URL="mysql://user:password@localhost:3306/nama_database"
-     ```
-   - Jalankan migrasi database:
-     ```sh
-     bun run prisma migrate dev
-     ```
-4. **Jalankan Server**
+3. **Jalankan proyek frontend:**
    ```sh
    bun run dev
    ```
-
-## 🚀 API Endpoints
-### 1. **Membuat Pembayaran**
-   - **Endpoint**: `POST /pembayaran`
-   - **Request Body**:
-     ```json
-     {
-       "penjualan_Id": "123",
-       "jumlah_pembayaran": "500000",
-       "metode_pembayaran": "Transfer Bank"
-     }
-     ```
-   - **Response**:
-     ```json
-     {
-       "message": "Pembayaran berhasil",
-       "data": {
-         "id": "1",
-         "penjualan_Id": "123",
-         "jumlah_pembayaran": "500000",
-         "metode_pembayaran": "Transfer Bank"
-       }
-     }
-     ```
-
-### 2. **Mendapatkan Semua Pembayaran**
-   - **Endpoint**: `GET /pembayaran`
-   - **Response**:
-     ```json
-     {
-       "message": "Berhasil mengambil seluruh transaksi pembayaran",
-       "data": [
-         {
-           "id": "1",
-           "penjualan_Id": "123",
-           "jumlah_pembayaran": "500000",
-           "metode_pembayaran": "Transfer Bank"
-         }
-       ]
-     }
-     ```
-
-## 🛑 Validasi & Error Handling
-- **404 - Transaksi tidak ditemukan** jika `penjualan_Id` tidak ada.
-- **500 - Transaksi sudah selesai** jika pembayaran telah dilakukan sebelumnya.
-- **500 - Kesalahan server** jika terjadi error pada sistem.
-
-## 📜 Lisensi
-Proyek ini menggunakan lisensi MIT. Silakan gunakan dan kontribusi sesuai kebutuhan.
+4. **Masuk ke folder `server`:**
+   ```sh
+   cd ../server
+   ```
+5. **Konfigurasi database di file `.env`**.
+6. **Install dependencies:**
+   ```sh
+   npm i
+   ```
+7. **Jalankan migrasi database:**
+   ```sh
+   npx prisma migrate dev
+   ```
+8. **Seed database:**
+   ```sh
+   npx prisma db seed
+   ```
+9. **Jalankan server:**
+   ```sh
+   npm run dev
+   ```
 
 ---
 
-**Dibuat dengan ❤️ oleh [Nama Anda]**
+## 🌐 **API Endpoints**
 
+### 1. **POST /pembayaran**
+
+🔹 **Membuat transaksi pembayaran.**
+
+**Request Body:**
+
+```json
+{
+  "penjualan_Id": 1,
+  "jumlah_pembayaran": 3000000,
+  "metode_pembayaran": "Transfer Bank"
+}
+```
+
+**Response:**
+
+```json
+{
+  "message": "Pembayaran berhasil",
+  "data": {
+    "id": 1,
+    "penjualan_Id": 1,
+    "jumlah_pembayaran": "3000000",
+    "metode_pembayaran": "Transfer Bank"
+  }
+}
+```
+
+---
+
+### 2. **GET /pembayaran**
+
+🔹 **Mengambil semua transaksi pembayaran.**
+
+**Response:**
+
+```json
+{
+  "message": "Berhasil mengambil seluruh transaksi pembayaran",
+  "data": [
+    {
+      "id": 1,
+      "penjualan_Id": 1,
+      "jumlah_pembayaran": "3000000",
+      "metode_pembayaran": "Transfer Bank"
+    }
+  ]
+}
+```
+
+---
+
+### 3. **GET /komisi**
+
+🔹 **Mengambil data komisi marketing.**
+
+**Response:**
+
+```json
+{
+  "message": "Data komisi berhasil diambil",
+  "data": [
+    {
+      "marketing": "Alfandy",
+      "bulan": "May",
+      "Omzet": 138035000,
+      "komisiPersen": 2.5,
+      "komisiNominal": 3450875
+    }
+  ]
+}
+```
+
+---
+
+### 4. **GET /penjualan**
+
+🔹 **Mengambil data transaksi penjualan.**
+
+**Response:**
+
+```json
+{
+  "message": "Success fetch penjualan data",
+  "data": [
+    {
+      "id": 1,
+      "transaction_number": "TRX001",
+      "marketing_Id": 1,
+      "date": "2023-05-22T00:00:00.000Z",
+      "cargo_fee": 25000,
+      "total_balance": 3000000,
+      "grand_total": 3025000
+    }
+  ]
+}
+```
+
+---
+
+### 💡 **Catatan:**
+
+Sesuaikan konfigurasi database di file `.env` sebelum menjalankan proyek.
